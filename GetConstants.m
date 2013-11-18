@@ -2,15 +2,17 @@ function c = GetConstants(T)
 % GetConstants
 %   Returns a structure containing fundamental physical constants.
 %   Some constants may be temperature dependent, and are calculated at
-%   temperature T in °C.
+%   temperature T in C.
 %
 % Syntax
 %   c = GetConstants(T)
 %
 % Parameters
-%   T = Temperature in °C
+%   T = Temperature in C
 %
-% Copyright (c) 2013 Dallas T. Morisette.
+% Copyright (c) 2013 Dallas T. Morisette (morisett@purdue.edu).
+% Released under the terms of the FreeBSD License. 
+% See LICENSE file for details.
 %
 
     c.T0    = 273.15;               % 0 degrees C in Kelvin

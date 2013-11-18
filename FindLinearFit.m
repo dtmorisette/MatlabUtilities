@@ -13,7 +13,9 @@ function [pf, rng] = FindLinearFit(x,y, varargin)
 %       n (default: 10)
 %           The number of bins used to determine the prevailing slope
 %
-% Copyright (c) 2013 Dallas T. Morisette.
+% Copyright (c) 2013 Dallas T. Morisette (morisett@purdue.edu).
+% Released under the terms of the FreeBSD License. 
+% See LICENSE file for details.
 %
     ip = inputParser;
     ip.addRequired('x', @isvector);

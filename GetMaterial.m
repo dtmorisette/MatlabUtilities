@@ -15,7 +15,9 @@ function s = GetMaterial(material, T)
 %   'Al2O3' Aluminum Oxide
 %   'Ni'    Nickel
 %
-% Copyright (c) 2013 Dallas T. Morisette.
+% Copyright (c) 2013 Dallas T. Morisette (morisett@purdue.edu).
+% Released under the terms of the FreeBSD License. 
+% See LICENSE file for details.
 %
 
     c = GetConstants(T);
