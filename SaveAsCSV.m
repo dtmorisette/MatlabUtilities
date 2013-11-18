@@ -1,4 +1,23 @@
 function SaveAsCSV(d, fname)
+% SaveAsCSV - Save a structure array to a CSV file.
+%
+% Each vector field of the given structure is written as a column to the
+% specified CSV file. Column headers are the field names, and are placed in
+% the first row of the file. Any scalar fields are written in the last two
+% columns as field name / value pairs. 
+%
+%  This function is a quick and dirty (read "unstable") mashup so is not
+%  expected to be reliable.
+%
+%  ** Behavior is currently undefined in (at least!) the following cases:
+%       Not all vectors are not the same length
+%       There are more scalar fields than the length of the vectors
+%       
+% Copyright (c) 2013 Dallas T. Morisette (morisett@purdue.edu).
+% Released under the terms of the FreeBSD License. 
+% See LICENSE file for details.
+%
+
     fields = fieldnames(d);
     M = [];
     headers = {};
