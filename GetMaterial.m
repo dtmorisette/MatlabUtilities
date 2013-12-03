@@ -8,6 +8,9 @@ function s = GetMaterial(material, T)
 % Parameters
 %   T = Temperature in °C
 %
+%   T can be either a scalar or a vector. If T is a vector, any temperature
+%   dependent material parameter will also be a vector (e.g. ni).
+%
 % Materials Available - parameter 'material' must be one of the following:
 %   'SiC'   4H Silicon Carbide
 %   'Si'    Silicon
@@ -42,11 +45,11 @@ function s = GetMaterial(material, T)
             s.Eg0     = 3.23;                       % Bandgap at 296 K (eV)
             s.vth     = sqrt(3*c.kb*T/s.mde)*100;   % Thermal velocity in cm/s
 
-            s.Nc = 1e-6*2*s.Mc*(2*pi*s.mde*c.kb*T/(c.h^2))^(3/2); % (cm^-3)
-            s.Nv = 1e-6*2*s.Mv*(2*pi*s.mdh*c.kb*T/(c.h^2))^(3/2); % (cm^-3)
+            s.Nc = 1e-6*2*s.Mc*(2*pi*s.mde*c.kb*T/(c.h^2)).^(3/2);% (cm^-3)
+            s.Nv = 1e-6*2*s.Mv*(2*pi*s.mdh*c.kb*T/(c.h^2)).^(3/2);% (cm^-3)
             s.Eg = s.Eg0 - 0.00034*(T-296);                       % (eV)
-            s.ni = sqrt(s.Nc*s.Nv)*exp(-s.Eg/(2*c.kT));           % (cm^-3)
-            s.Ec_Ei = s.Eg/2 - c.kT*log(s.Nv/s.Nc);               % (eV)
+            s.ni = sqrt(s.Nc.*s.Nv).*exp(-s.Eg./(2*c.kT));        % (cm^-3)
+            s.Ec_Ei = s.Eg/2 - c.kT.*log(s.Nv./s.Nc);             % (eV)
             
         % Silicon (Si)
         case 'si'
@@ -64,11 +67,11 @@ function s = GetMaterial(material, T)
             s.Eg0      = 1.12;
             s.vth      = sqrt(3*c.kb*T/s.mde)*100;    
 
-            s.Nc = 1e-6*2*s.Mc*(2*pi*s.mde*c.kb*T/(c.h^2))^(3/2); % (cm^-3)
-            s.Nv = 1e-6*2*s.Mv*(2*pi*s.mdh*c.kb*T/(c.h^2))^(3/2); % (cm^-3)
-            s.Eg = 1.17 - 4.73e-4 * T^2/(T+636);
-            s.ni = sqrt(s.Nc*s.Nv)*exp(-s.Eg/(2*c.kT));           % (cm^-3)
-            s.Ec_Ei = s.Eg/2 - c.kT*log(s.Nv/s.Nc);               % (eV)
+            s.Nc = 1e-6*2*s.Mc*(2*pi*s.mde*c.kb*T/(c.h^2)).^(3/2);% (cm^-3)
+            s.Nv = 1e-6*2*s.Mv*(2*pi*s.mdh*c.kb*T/(c.h^2)).^(3/2);% (cm^-3)
+            s.Eg = 1.17 - 4.73e-4 * T.^2./(T+636);
+            s.ni = sqrt(s.Nc.*s.Nv).*exp(-s.Eg./(2*c.kT));        % (cm^-3)
+            s.Ec_Ei = s.Eg/2 - c.kT.*log(s.Nv./s.Nc);             % (eV)
         
         % Silicon Dioxide (SiO2)
         case 'sio2'
