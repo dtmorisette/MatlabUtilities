@@ -10,6 +10,10 @@ function c = GetConstants(T)
 % Parameters
 %   T = Temperature in C
 %
+%   T can be either a scalar or a vector. If T is a vector, any temperature
+%   dependent constant will also be a vector (e.g. kT/q). 
+%
+%
 % Copyright (c) 2013 Dallas T. Morisette (morisett@purdue.edu).
 % Released under the terms of the FreeBSD License. 
 % See LICENSE file for details.
@@ -17,7 +21,7 @@ function c = GetConstants(T)
 
     c.T     = T;
     c.T0    = 273.15;               % 0 degrees C in Kelvin
-    assert(T+c.T0 >= 0, 'Negative absolute temperature requested');
+    assert(all(T+c.T0) >= 0, 'Negative absolute temperature requested');
     
     c.q     = 1.602176565e-19;      % electron charge (C)
     c.kb    = 1.3806504e-23;        % Boltzmann constant (J/K)
