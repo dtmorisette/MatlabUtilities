@@ -15,6 +15,7 @@ function c = GetConstants(T)
 % See LICENSE file for details.
 %
 
+    c.T     = T;
     c.T0    = 273.15;               % 0 degrees C in Kelvin
     assert(T+c.T0 >= 0, 'Negative absolute temperature requested');
     
