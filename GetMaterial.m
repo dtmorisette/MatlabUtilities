@@ -42,8 +42,8 @@ function s = GetMaterial(material, T)
             s.mdh     = (s.mth^2*s.mlh)^(1/3);      % DOS effective mass (holes) (kg)
             %             H     C   -- lattice site (hexagonal vs cubic)
             s.Ed      = [0.047 0.096];              % Ec - Ed, donor state (eV)
-            s.Ed_ratio= [0.35 0.65];                % Average fraction of donor on H- or C-site
-            s.gd      = [2    2   ];                % Degeneracy factor for donor states
+            s.Ed_ratio= [0.35  0.65];               % Average fraction of donor on H- or C-site
+            s.gd      = [2     2   ];               % Degeneracy factor for donor states
             s.Ea      = 0.18;                       % Ea - Ev, acceptor state (eV)
             s.ga      = 4;                          % Degeneracy factor for acceptor states
             s.Eg0     = 3.23;                       % Bandgap at 296 K (eV)
@@ -54,6 +54,7 @@ function s = GetMaterial(material, T)
             s.Eg = s.Eg0 - 0.00034*(T-296);                       % (eV)
             s.ni = sqrt(s.Nc.*s.Nv).*exp(-s.Eg./(2*c.kT));        % (cm^-3)
             s.Ec_Ei = s.Eg/2 - c.kT.*log(s.Nv./s.Nc);             % (eV)
+            s.Ldi = sqrt(s.k*c.eps0*c.kTq./(2*c.q*s.ni));
             
         % Silicon (Si)
         case 'si'
@@ -76,6 +77,7 @@ function s = GetMaterial(material, T)
             s.Eg = 1.17 - 4.73e-4 * T.^2./(T+636);
             s.ni = sqrt(s.Nc.*s.Nv).*exp(-s.Eg./(2*c.kT));        % (cm^-3)
             s.Ec_Ei = s.Eg/2 - c.kT.*log(s.Nv./s.Nc);             % (eV)
+            s.Ldi = sqrt(s.k*c.eps0*c.kTq./(2*c.q*s.ni));
         
         % Silicon Dioxide (SiO2)
         case 'sio2'
