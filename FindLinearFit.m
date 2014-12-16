@@ -31,7 +31,7 @@ function [pf, rng] = FindLinearFit(x,y, varargin)
     % Identify the prevailing local slope
     d = dydx(x,y,w);            % Local deriative based on linear fit with window width = w
     % Filter out large areas with relatively small slope
-    rng = find(abs(d)/mean(abs(d)) > 0.1);
+    rng = find(abs(d)/mean(abs(d)) > 0.5);
     [cnt, bins] = hist(d(rng),n);      
     i = find(cnt == max(cnt));     
     m = bins(i);
